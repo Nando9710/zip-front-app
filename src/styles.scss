@@ -1,1 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@use '@assets/scss/functions/functions.scss' as f;
+@use '@assets/scss/theme/theme.scss';
+@use '@assets/scss/_typography.scss';
+@use '@assets/scss/helpers/breakpoints.scss' as b;
+
+@include mat.core();
+
+html {
+  // Apply the light theme by default
+  @include mat.core-theme(theme.$light-theme);
+  @include mat.button-theme(theme.$light-theme);
+  // @include mat.datepicker-theme(theme.$light-theme);
+  // @include mat.autocomplete-theme(theme.$light-theme);
+  // @include mat.select-theme(theme.$light-theme);
+  // @include mat.dialog-theme(theme.$light-theme);
+  // @include mat.slider-theme(theme.$light-theme);
+  // @include mat.checkbox-theme(theme.$light-theme);
+  // @include mat.divider-theme(theme.$light-theme);
+  // @include mat.progress-spinner-theme(theme.$light-theme);
+  // @include mat.bottom-sheet-theme(theme.$light-theme);
+  @include mat.input-theme(theme.$light-theme);
+  @include mat.form-field-theme(theme.$light-theme);
+}
+
+// font breakpoints to fluid design
+html {
+  font-size: 16px;
+  // font-size: f.toVW(1399.98) !important;
+
+  // @media (max-width: b.$lg) {
+  //   font-size: f.toVW(1199.98) !important;
+  // }
+
+  // @media (max-width: b.$md) {
+  //   font-size: f.toVW(991.98) !important;
+  // }
+
+  // @media (max-width: b.$sm) {
+  //   font-size: f.toVW(767.98) !important;
+  // }
+
+  // @media (max-width: b.$xs) {
+  //   font-size: f.toVW(575.98) !important;
+  // }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  overflow-x: hidden;
+}

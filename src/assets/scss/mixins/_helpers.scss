@@ -1,0 +1,62 @@
+@use '@angular/material' as mat;
+@use '@assets/scss/helpers/breakpoints.scss' as b;
+@use '@assets/scss/variables/variables.scss' as *;
+
+@mixin app-mixins-theme-helpers($theme) {
+
+  .container-header,
+  .container-footer,
+  .container-home,
+  .container-search-forms {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width: b.$lg) {
+      width: 90%;
+    }
+  }
+
+  .container-search {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .home-padding-top {
+    padding-top: $home-section-padding;
+  }
+
+  .home-padding-bottom {
+    padding-bottom: $home-section-padding;
+  }
+
+  .position-relative {
+    position: relative;
+  }
+
+  .p-half-rem {
+    padding: 0.5rem;
+  }
+
+  .m-half-rem {
+    margin: 0.5rem;
+  }
+
+  .text-align-center {
+    text-align: center;
+  }
+
+  .primary-color {
+    color: mat.get-theme-color($theme, primary, 50);
+  }
+
+  .secondary-color {
+    color: mat.get-theme-color($theme, primary, 50);
+  }
+
+  :root {
+    --primary-color: #{mat.get-theme-color($theme, primary, 50)};
+    --secondary-color: #{mat.get-theme-color($theme, secondary, 50)};
+  }
+}

@@ -22,7 +22,7 @@ export function app(): express.Express {
   // Serve static files from /browser
   server.get('**', express.static(browserDistFolder, {
     maxAge: '1y',
-    index: 'index.html',
+    index: 'index.html'
   }));
 
   // All regular routes use the Angular engine
@@ -35,7 +35,7 @@ export function app(): express.Express {
         documentFilePath: indexHtml,
         url: `${protocol}://${headers.host}${originalUrl}`,
         publicPath: browserDistFolder,
-        providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
+        providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }]
       })
       .then((html) => res.send(html))
       .catch((err) => next(err));
@@ -45,7 +45,7 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = process.env['PORT'] || 4000;
+  const port = process.env.PORT || 4000;
 
   // Start up the Node server
   const server = app();

@@ -1,33 +1,94 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": false,
     "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "strictNullChecks": false,
+    "noImplicitReturns": false,
     "importHelpers": true,
-    "target": "ES2022",
-    "module": "ES2022",
+    "preserveSymlinks": true,
+    "useDefineForClassFields": false,
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Node",
     "lib": [
-      "ES2022",
-      "dom"
-    ]
+      "ESNext",
+      "DOM"
+    ],
+    "types": [
+      "node",
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "paths": {
+      "@constants/*": [
+        "src/app/core/constants/*"
+      ],
+      "@shared/*": [
+        "src/app/shared/*"
+      ],
+      "@services/*": [
+        "src/app/core/services/*"
+      ],
+      "@interfaces/*": [
+        "src/app/core/interfaces/*"
+      ],
+      "@guards/*": [
+        "src/app/core/guards/*"
+      ],
+      "@classes/*": [
+        "src/app/core/classes/*"
+      ],
+      "@pipes/*": [
+        "src/app/core/pipes/*"
+      ],
+      "@animations/*": [
+        "src/app/core/animations/*"
+      ],
+      "@directives/*": [
+        "src/app/shared/directives/*"
+      ],
+      "@components/*": [
+        "src/app/components/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@pages/*": [
+        "src/app/pages/*"
+      ],
+      "@interceptors": [
+        "src/app/core/interceptors/interceptors"
+      ],
+      "@env": [
+        "src/environments/environment.ts"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "preserveSymlinks": true,
+    "strictTemplates": false,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "enableResourceInlining": true
   }
 }

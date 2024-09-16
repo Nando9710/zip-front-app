@@ -1,0 +1,21 @@
+@use '@angular/material' as mat;
+@use '@assets/scss/variables/variables.scss' as *;
+
+@mixin app-mixins-theme-buttons($theme) {
+
+  // button[mat-button],
+  // button[mat-flat-button],
+  // button[mat-stroked-button],
+  // button[mat-raised-button],
+  // a[mat-raised-button] {
+  //   border-radius: $border-radius;
+  // }
+
+  // button[mat-stroked-button].mdc-button {
+  //   border-color: mat.get-theme-color($theme, primary, 40);
+  // }
+
+  // mat-icon.mat-icon {
+  //   color: mat.get-theme-color($theme, secondary, 50);
+  // }
+}
