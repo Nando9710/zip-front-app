@@ -2,6 +2,7 @@
 @use '@assets/scss/functions/functions.scss' as f;
 @use '@assets/scss/theme/theme.scss';
 @use '@assets/scss/_typography.scss';
+@use '@assets/scss/_utils.scss';
 @use '@assets/scss/helpers/breakpoints.scss' as b;
 
 @include mat.core();
@@ -10,6 +11,10 @@ html {
   // Apply the light theme by default
   @include mat.core-theme(theme.$light-theme);
   @include mat.button-theme(theme.$light-theme);
+  @include mat.sidenav-theme(theme.$light-theme);
+  @include mat.toolbar-theme(theme.$light-theme);
+  @include mat.list-theme(theme.$light-theme);
+  @include mat.icon-theme(theme.$light-theme);
   // @include mat.datepicker-theme(theme.$light-theme);
   // @include mat.autocomplete-theme(theme.$light-theme);
   // @include mat.select-theme(theme.$light-theme);

@@ -1,1 +1,32 @@
-<p>dashboard works!</p>
+<mat-drawer-container class="example-container" [hasBackdrop]="false">
+  <mat-drawer #drawer mode="push" class="mat-elevation-z1" [opened]="true">
+
+    <div class="d-flex justify-content-center align-items-center">
+      <img ngSrc="../../../assets/logos/logo.png" alt="logo" width="120" height="120">
+    </div>
+    <mat-nav-list>
+      @for (link of navList; track link) {
+        <a mat-list-item [routerLink]="link.link" routerLinkActive="active" >
+          <span matListItemTitle>{{ link?.title }}</span>
+          <mat-icon matListItemIcon>{{link.icon}}</mat-icon>
+        </a>
+        <!-- <a mat-list-item href="..." [activated]="link.isActive">{{ link }}</a> -->
+      }
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar class="mat-elevation-z1">
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button> -->
+      <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+      </button> -->
+    </mat-toolbar>
+
+    <router-outlet />
+  </mat-drawer-content>
+</mat-drawer-container>
