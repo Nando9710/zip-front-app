@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TOKEN_STORAGE_KEY, USER_STORAGE_KEY } from '@constants/user';
+import { TOKEN_STORAGE_KEY, USER_STORAGE_KEY } from '@constants/storage';
 import { User } from '@interfaces/user';
 import { EncryptDecryptService } from '@services/encrypt-decrypt/encrypt-decrypt.service';
 import Cookies from 'js-cookie';
