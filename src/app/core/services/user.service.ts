@@ -8,7 +8,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-
+  /**
+   * Injections
+   */
   private readonly http: HttpClient = inject(HttpClient);
 
   public getUsers(): Observable<User[]> {

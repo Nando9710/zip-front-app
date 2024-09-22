@@ -111,8 +111,6 @@ export class AddEditUserComponent {
     this.isEditing.set(this._data?.isEditing ?? false);
     this.user.set(this._data?.user);
 
-    console.log(this._data);
-
     if (this.isEditing()) {
       this.form.patchValue({ ...this.user() });
       this.form.controls.password.disable();

@@ -55,7 +55,6 @@ export class UsersComponent {
         next: (users: User[]) => {
           this.dataSource.set(users);
           this._loadingService.hide();
-          console.log(users);
         },
         error: (error) => {
           this._loadingService.hide();
@@ -133,6 +132,5 @@ export class UsersComponent {
 
   ngOnInit(): void {
     this.getUsers();
-    console.log('object');
   }
 }

@@ -3,7 +3,7 @@
   <div class="table">
     <div class="d-flex justify-content-end align-items-center gap-1rem">
       <button mat-fab extended (click)="addUser()">
-        <mat-icon>add</mat-icon>
+        <mat-icon class="material-icons-outlined">add</mat-icon>
         <span>{{ 'crear usuario' | translate | capitalize }}</span>
       </button>
     </div>
@@ -29,10 +29,10 @@
           <div class="actions d-flex align-items-center">
             @if (element.actions) {
               <button mat-icon-button (click)="editUser(element)">
-                <mat-icon>edit</mat-icon>
+                <mat-icon class="material-icons-outlined">edit</mat-icon>
               </button>
               <button mat-icon-button (click)="deleteUser(element)">
-                <mat-icon>delete</mat-icon>
+                <mat-icon class="material-icons-outlined">delete</mat-icon>
               </button>
             }
           </div>
