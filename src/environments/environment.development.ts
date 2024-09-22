@@ -1,5 +1,9 @@
-export const environment = {
+import { Environment } from "@interfaces/environment";
+
+export const environment: Environment = {
   production: true,
 
-  cryptoSecretKey: 'Y0urS3cr3tK3yF0rEncrypt10n&D3crypt'
+  cryptoSecretKey: 'Y0urS3cr3tK3yF0rEncrypt10n&D3crypt',
+
+  apiUrl: 'http://localhost:3000/'
 };
