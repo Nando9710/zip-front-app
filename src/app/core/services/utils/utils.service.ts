@@ -4,7 +4,8 @@ import { ShowToastrService, ToastrConfig, ToastrTypes } from "@services/show-toa
 import { marker as _t } from '@biesbjerg/ngx-translate-extract-marker';
 import { LoadingService } from "@services/loading/loading.service";
 import { UntypedFormArray } from "@angular/forms";
-
+import { Router } from "@angular/router";
+import { LoggedInUserService } from "@services/logged-in-user/logged-in-user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,8 @@ export class UtilsService {
    */
   private readonly _showToastrService: ShowToastrService = inject(ShowToastrService);
   private readonly _loadingService: LoadingService = inject(LoadingService);
+  private readonly _loggedInUserService: LoggedInUserService = inject(LoggedInUserService);
+  private readonly _router: Router = inject(Router);
 
   private readonly toastrTypes: typeof ToastrTypes = ToastrTypes;
 
@@ -39,7 +42,20 @@ export class UtilsService {
    */
   public errorHandle(response: HttpErrorResponse): void {
     let messages: string[];
-    if (response?.status === 400) {
+
+    if ([401, 403].includes(response?.status)) {
+      this._loggedInUserService.removeUserCookies();
+
+      this._showToastrService.showToast(
+        _t('Usuario no autorizado'),
+        this.toastrTypes.INFO,
+        false,
+        'Error',
+        this.getDefaultToastrConfig()
+      );
+
+      this._router.navigate(['authentication']);
+    } else if (response?.status === 400) {
       if (typeof response?.error?.message === 'string') {
         messages = [response?.error?.message];
       } else if (typeof response?.error?.error?.message === 'string') {

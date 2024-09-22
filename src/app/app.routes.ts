@@ -11,8 +11,7 @@ export const ROUTES: Routes = [
   },
   {
     path: '',
-    // redirectTo: 'authentication',
-    redirectTo: 'dashboard',
+    redirectTo: 'authentication',
     pathMatch: 'full'
   }
 ];

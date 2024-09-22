@@ -31,6 +31,13 @@ export class LoggedInUserService {
     return token;
   }
 
+  public setTokenOfUser(accessToken: string): void {
+    if (isPlatformBrowser(this._platformId)) {
+      Cookies.set(TOKEN_STORAGE_KEY, accessToken);
+      localStorage.setItem(TOKEN_STORAGE_KEY, accessToken);
+    }
+  }
+
   /**
    * Devuelve el usuario autenticado en el sistema
    *
@@ -39,12 +46,30 @@ export class LoggedInUserService {
   public getLoggedInUser(): User {
     let user: string;
 
-    if (USER_STORAGE_KEY in localStorage) {
-      user = localStorage.getItem(USER_STORAGE_KEY);
-    } else if (USER_STORAGE_KEY in Cookies) {
-      user = Cookies.get(USER_STORAGE_KEY);
+    if (isPlatformBrowser(this._platformId)) {
+      if (USER_STORAGE_KEY in localStorage) {
+        user = localStorage.getItem(USER_STORAGE_KEY);
+      } else if (USER_STORAGE_KEY in Cookies) {
+        user = Cookies.get(USER_STORAGE_KEY);
+      }
     }
 
     return user ? JSON.parse(EncryptDecryptService.decrypt(user)) : null;
+  }
+
+  public setUser(user: User): void {
+    if (isPlatformBrowser(this._platformId)) {
+      Cookies.set(USER_STORAGE_KEY, EncryptDecryptService.encrypt(JSON.stringify(user)));
+      localStorage.setItem(USER_STORAGE_KEY, EncryptDecryptService.encrypt(JSON.stringify(user)));
+    }
+  }
+
+  public removeUserCookies(): void {
+    if (isPlatformBrowser(this._platformId)) {
+      Cookies.remove(TOKEN_STORAGE_KEY);
+      localStorage.removeItem(USER_STORAGE_KEY);
+      Cookies.remove(USER_STORAGE_KEY);
+      localStorage.removeItem(USER_STORAGE_KEY);
+    }
   }
 }

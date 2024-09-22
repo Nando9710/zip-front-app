@@ -1,1 +1,47 @@
-<p>login works!</p>
+<mat-card>
+  <mat-card-header >
+    <mat-card-title-group class="d-flex flex-column justify-content-center align-items-center">
+      <img ngSrc="../../../../../assets/logos/logo.webp" alt="logo" width="150" height="150" priority>
+
+      <h2>{{'iniciar sesión' | translate | titlecase}}</h2>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form" class="w-100">
+      <mat-form-field appearance="outline" class="w-100 mb-1rem" floatLabel="always" subscriptSizing="dynamic">
+        <mat-label>{{ 'correo electrónico' | translate | capitalize }}</mat-label>
+        <input formControlName="email" matInput type="email"/>
+        @if (form.controls.email.hasError('required')) {
+          <mat-error>
+            {{ 'correo electrónico obligatorio' | translate | uppercase }}
+          </mat-error>
+        }
+        @if (form.controls.email.hasError('pattern')) {
+          <mat-error>
+            {{ 'correo electrónico no válido' | translate | uppercase }}
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100 mb-1rem" floatLabel="always" subscriptSizing="dynamic">
+        <mat-label>{{ 'contraseña' | translate | capitalize }}</mat-label>
+        <input formControlName="password" matInput [type]="hide() ? 'text' : 'password'"/>
+        <button mat-icon-button matSuffix (click)="hide.set(!hide())">
+          <mat-icon class="material-icons-outlined">{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        @if (form.controls.password.hasError('required')) {
+          <mat-error>
+            {{ 'contraseña obligatoria' | translate | uppercase }}
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <button mat-flat-button
+              (click)="login()"
+              [disabled]="form.invalid"
+              class="w-100">
+        SIGUIENTE
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

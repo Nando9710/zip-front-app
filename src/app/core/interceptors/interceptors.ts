@@ -16,30 +16,21 @@ import { LoggedInUserService } from '@services/logged-in-user/logged-in-user.ser
  * @param next - Función para manejar la petición Http
  */
 export function TokenInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
-  const headers: { [key: string]: string } = {
-    fromWeb: 'true'
-  };
 
   const token: string = inject(LoggedInUserService).getTokenOfUser();
-  if (token) {
-    headers.Authorization = "Bearer " + token;
-  }
 
-  let clonedRequest = req.clone({
-    setHeaders: headers
-  });
+  const headers: { [key: string]: string } = {
+    'Content-Type': 'application/json',
+    'Cache-Control': 'public, max-age=32150000',
+    'Referrer-Policy': 'no-referrer-when-downgrade',
+    'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
+    'Access-Control-Allow-Origin': '*',
+    fromWeb: "true"
+  };
 
-  clonedRequest = clonedRequest.clone({
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Cache-Control': 'public, max-age=32150000',
-      'Referrer-Policy': 'no-referrer-when-downgrade',
-      'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
-      'Access-Control-Allow-Origin': '*'
-    })
-  });
+  if (token) headers.Authorization = "Bearer " + token;
 
-  return next(clonedRequest);
+  return next(req.clone({ setHeaders: headers }));
 }
 
 /**
