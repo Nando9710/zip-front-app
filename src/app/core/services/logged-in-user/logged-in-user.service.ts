@@ -67,7 +67,7 @@ export class LoggedInUserService {
   public removeUserCookies(): void {
     if (isPlatformBrowser(this._platformId)) {
       Cookies.remove(TOKEN_STORAGE_KEY);
-      localStorage.removeItem(USER_STORAGE_KEY);
+      localStorage.removeItem(TOKEN_STORAGE_KEY);
       Cookies.remove(USER_STORAGE_KEY);
       localStorage.removeItem(USER_STORAGE_KEY);
     }

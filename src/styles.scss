@@ -21,7 +21,7 @@ html {
   @include mat.checkbox-theme(theme.$light-theme);
   @include mat.dialog-theme(theme.$light-theme);
   @include mat.card-theme(theme.$light-theme);
-  // @include mat.datepicker-theme(theme.$light-theme);
+  @include mat.tooltip-theme(theme.$light-theme);
   // @include mat.autocomplete-theme(theme.$light-theme);
   // @include mat.select-theme(theme.$light-theme);
   // @include mat.slider-theme(theme.$light-theme);
