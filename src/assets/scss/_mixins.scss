@@ -2,6 +2,7 @@
 @import "mixins/helpers";
 @import "mixins/scrollbars";
 @import "mixins/table";
+@import "mixins/dialogs";
 
 @mixin mixin-theme($theme) {
 
@@ -10,4 +11,6 @@
   @include app-mixins-theme-helpers($theme);
   @include app-mixins-theme-table($theme);
   @include app-mixins-theme-scrollbars();
+  @include app-mixins-theme-dialog($theme);
+
 }

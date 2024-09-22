@@ -1,0 +1,18 @@
+@use '@angular/material' as mat;
+
+@mixin app-mixins-theme-dialog($theme) {
+
+  .mat-mdc-dialog-title {
+    padding-bottom: 0 !important;
+    line-height: 0 !important;
+
+    &::before {
+      height: 0 !important;
+    }
+  }
+
+  .mat-mdc-dialog-content {
+    min-height: 4rem !important;
+    overflow-x: hidden !important;
+  }
+}

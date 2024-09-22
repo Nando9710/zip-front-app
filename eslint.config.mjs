@@ -94,6 +94,7 @@ export default [
       "no-ex-assign": "error",
       "no-extra-boolean-cast": "error",
       "no-func-assign": "error",
+      "@typescript-eslint/no-empty-object-type": "off",
       "no-inner-declarations": [
         "error",
         "both"

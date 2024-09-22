@@ -2,7 +2,7 @@
 
   <div class="table">
     <div class="d-flex justify-content-end align-items-center gap-1rem">
-      <button mat-fab extended>
+      <button mat-fab extended (click)="addUser()">
         <mat-icon>add</mat-icon>
         <span>{{ 'crear usuario' | translate | capitalize }}</span>
       </button>
@@ -13,7 +13,7 @@
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> {{'nombre' | translate | capitalize}} </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.name + ' ' + element.lastName}} </td>
       </ng-container>
 
       <!-- Email Column -->
@@ -28,10 +28,10 @@
         <td mat-cell *matCellDef="let element">
           <div class="actions d-flex align-items-center">
             @if (element.actions) {
-              <button mat-icon-button>
+              <button mat-icon-button (click)="editUser(element)">
                 <mat-icon>edit</mat-icon>
               </button>
-              <button mat-icon-button>
+              <button mat-icon-button (click)="deleteUser(element)">
                 <mat-icon>delete</mat-icon>
               </button>
             }
