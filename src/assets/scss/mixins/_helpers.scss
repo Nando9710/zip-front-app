@@ -1,34 +1,110 @@
 @use '@angular/material' as mat;
 @use '@assets/scss/helpers/breakpoints.scss' as b;
-@use '@assets/scss/variables/variables.scss' as *;
 
 @mixin app-mixins-theme-helpers($theme) {
 
-  .container-header,
-  .container-footer,
-  .container-home,
-  .container-search-forms {
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .d-flex {
+    display: flex;
+  }
+
+  .flex-column {
+    flex-direction: column;
+  }
+
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .justify-content-center {
+    justify-content: center;
+  }
+
+  .justify-content-between {
+    justify-content: space-between;
+  }
+
+  .justify-content-around {
+    justify-content: space-around;
+  }
+
+  .justify-content-end {
+    justify-content: flex-end;
+  }
+
+  .align-items-center {
+    align-items: center;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .gap-4px {
+    gap: 4px;
+  }
+
+  .gap-8px {
+    gap: 8px;
+  }
+
+  .gap-1rem {
+    gap: 1rem;
+  }
+
+  .m-1rem {
+    margin: 1rem;
+  }
+
+  .mt-1rem {
+    margin-top: 1rem;
+  }
+
+  .mb-1rem {
+    margin-bottom: 1rem;
+  }
+
+  .p-1rem {
+    padding: 1rem;
+  }
+
+  .pr-1rem {
+    padding-right: 1rem;
+  }
+
+  .pt-1rem {
+    padding-top: 1rem;
+  }
+
+  .w-100 {
+    width: 100%;
+  }
+
+  .w-30 {
+    width: 30%;
+  }
+
+  .w-50 {
+    width: 50%;
+  }
+
+  .w-60 {
+    width: 60%;
+  }
+
+  .w-70 {
     width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-
-    @media (max-width: b.$lg) {
-      width: 90%;
-    }
   }
 
-  .container-search {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+  .w-80 {
+    width: 80%;
   }
 
-  .home-padding-top {
-    padding-top: $home-section-padding;
-  }
-
-  .home-padding-bottom {
-    padding-bottom: $home-section-padding;
+  .h-100 {
+    height: 100%;
   }
 
   .position-relative {
