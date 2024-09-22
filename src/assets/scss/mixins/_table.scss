@@ -2,11 +2,22 @@
 
 @mixin app-mixins-theme-table($theme) {
 
-  section.table {
-    width: calc(100% - 300px);
+  section {
+    .table {
+      width: calc(100vw - 300px);
 
-    table {
-      width: 100%;
+      table {
+        width: 100%;
+
+        .actions {
+          width: 100px;
+        }
+
+        tr:hover {
+          background-color: mat.get-theme-color($theme, primary, 98);
+        }
+
+      }
     }
   }
 }

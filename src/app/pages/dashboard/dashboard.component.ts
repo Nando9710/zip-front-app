@@ -4,7 +4,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { NgOptimizedImage } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import { marker as _t } from '@biesbjerg/ngx-translate-extract-marker';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
@@ -12,6 +12,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   selector: 'app-dashboard',
   standalone: true,
   imports: [
+    NgClass,
     RouterLink,
     RouterLinkActive,
     RouterOutlet,

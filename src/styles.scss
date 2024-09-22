@@ -13,13 +13,15 @@ html {
   @include mat.toolbar-theme(theme.$light-theme);
   @include mat.list-theme(theme.$light-theme);
   @include mat.icon-theme(theme.$light-theme);
+  @include mat.icon-button-theme(theme.$light-theme);
+  @include mat.fab-theme(theme.$light-theme);
   @include mat.table-theme(theme.$light-theme);
+  @include mat.checkbox-theme(theme.$light-theme);
   // @include mat.datepicker-theme(theme.$light-theme);
   // @include mat.autocomplete-theme(theme.$light-theme);
   // @include mat.select-theme(theme.$light-theme);
   // @include mat.dialog-theme(theme.$light-theme);
   // @include mat.slider-theme(theme.$light-theme);
-  // @include mat.checkbox-theme(theme.$light-theme);
   // @include mat.divider-theme(theme.$light-theme);
   // @include mat.progress-spinner-theme(theme.$light-theme);
   // @include mat.bottom-sheet-theme(theme.$light-theme);

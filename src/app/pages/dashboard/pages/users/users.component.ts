@@ -6,13 +6,16 @@ import { MatTableModule } from '@angular/material/table';
 import { TranslateModule } from '@ngx-translate/core';
 import { CapitalizePipe } from '@pipes/capitalize/capitalize.pipe';
 import { LoadingService } from '@services/loading/loading.service';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-users',
   standalone: true,
   imports: [
     CapitalizePipe,
     MatTableModule,
+    MatButtonModule,
+    MatIconModule,
     TranslateModule
   ],
   templateUrl: './users.component.html',
@@ -30,7 +33,7 @@ export class UsersComponent {
   /**
    * displayedColumns: The columns to render in the table.
    */
-  public readonly displayedColumns: string[] = ['name', 'email'];
+  public readonly displayedColumns: string[] = ['name', 'email', 'actions'];
   public readonly dataSource: WritableSignal<{ name: string; email: string; }[]> = signal([]);
 
   private getUsers(): void {
@@ -55,7 +58,6 @@ export class UsersComponent {
         }
       });
   }
-
 
   ngOnInit(): void {
     this.getUsers();

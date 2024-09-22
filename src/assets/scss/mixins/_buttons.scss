@@ -1,6 +1,10 @@
 @use '@angular/material' as mat;
 
 @mixin app-mixins-theme-buttons($theme) {
+  button[mat-fab] {
+    background-color: mat.get-theme-color($theme, primary, 40);
+    color: white;
+  }
 
   // button[mat-button],
   // button[mat-flat-button],

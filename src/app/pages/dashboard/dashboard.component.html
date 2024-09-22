@@ -1,5 +1,5 @@
 <mat-drawer-container class="example-container" [hasBackdrop]="false">
-  <mat-drawer #drawer mode="push" class="mat-elevation-z1" [opened]="true">
+  <mat-drawer #drawer mode="side" class="mat-elevation-z1" [opened]="true">
 
     <div class="d-flex justify-content-center align-items-center">
       <img ngSrc="../../../assets/logos/logo.png" alt="logo" width="120" height="120" priority>
@@ -15,7 +15,7 @@
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content>
-    <mat-toolbar class="mat-elevation-z1">
+    <mat-toolbar class="mat-elevation-z1" [ngClass]="{'collapsed': drawer.isOpen}">
       <button mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
