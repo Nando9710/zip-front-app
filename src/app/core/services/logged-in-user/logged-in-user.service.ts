@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { TOKEN_STORAGE_KEY, USER_STORAGE_KEY } from '@constants/storage';
 import { User } from '@interfaces/user';
 import { EncryptDecryptService } from '@services/encrypt-decrypt/encrypt-decrypt.service';
@@ -9,6 +10,8 @@ import Cookies from 'js-cookie';
 })
 export class LoggedInUserService {
 
+  private readonly _platformId = inject(PLATFORM_ID);
+
   /**
    * Devuelve el token de usuario
    *
@@ -17,10 +20,12 @@ export class LoggedInUserService {
   public getTokenOfUser(): string {
     let token: string;
 
-    if (TOKEN_STORAGE_KEY in localStorage) {
-      token = localStorage.getItem(TOKEN_STORAGE_KEY);
-    } else if (TOKEN_STORAGE_KEY in Cookies) {
-      token = Cookies.get(TOKEN_STORAGE_KEY);
+    if (isPlatformBrowser(this._platformId)) {
+      if (TOKEN_STORAGE_KEY in localStorage) {
+        token = localStorage.getItem(TOKEN_STORAGE_KEY);
+      } else if (TOKEN_STORAGE_KEY in Cookies) {
+        token = Cookies.get(TOKEN_STORAGE_KEY);
+      }
     }
 
     return token;
