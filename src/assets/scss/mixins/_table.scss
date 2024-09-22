@@ -1,0 +1,12 @@
+@use '@angular/material' as mat;
+
+@mixin app-mixins-theme-table($theme) {
+
+  section.table {
+    width: calc(100% - 300px);
+
+    table {
+      width: 100%;
+    }
+  }
+}

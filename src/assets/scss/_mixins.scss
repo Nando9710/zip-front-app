@@ -1,11 +1,13 @@
 @import "mixins/buttons";
 @import "mixins/helpers";
 @import "mixins/scrollbars";
+@import "mixins/table";
 
 @mixin mixin-theme($theme) {
 
   // general mixins
   @include app-mixins-theme-buttons($theme);
   @include app-mixins-theme-helpers($theme);
+  @include app-mixins-theme-table($theme);
   @include app-mixins-theme-scrollbars();
 }
