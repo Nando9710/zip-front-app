@@ -28,11 +28,11 @@
         <td mat-cell *matCellDef="let element">
           <div class="actions d-flex align-items-center">
             @if (element.actions) {
-              <button mat-icon-button (click)="editUser(element)">
-                <mat-icon class="material-icons-outlined">edit</mat-icon>
+              <button mat-icon-button (click)="editUser(element)" [matTooltip]="'editar' | translate | uppercase">
+                <mat-icon class="material-icons-outlined primary-color">edit</mat-icon>
               </button>
-              <button mat-icon-button (click)="deleteUser(element)">
-                <mat-icon class="material-icons-outlined">delete</mat-icon>
+              <button mat-icon-button (click)="deleteUser(element)" [matTooltip]="'borrar' | translate | uppercase">
+                <mat-icon class="material-icons-outlined error-color">delete</mat-icon>
               </button>
             }
           </div>

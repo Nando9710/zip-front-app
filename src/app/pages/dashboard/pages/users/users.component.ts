@@ -14,15 +14,19 @@ import { BASIC_MATDIALOG_CONFIG } from '@constants/basic-mat-dialog-config';
 import { ShowToastrService, ToastrTypes } from '@services/show-toastr/show-toastr.service';
 import { UtilsService } from '@services/utils/utils.service';
 import { marker as _t } from '@biesbjerg/ngx-translate-extract-marker';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-users',
   standalone: true,
   imports: [
     CapitalizePipe,
+    UpperCasePipe,
     MatTableModule,
     MatButtonModule,
     MatIconModule,
+    MatTooltipModule,
     TranslateModule
   ],
   templateUrl: './users.component.html',

@@ -8,7 +8,7 @@
       @for (link of navList; track link) {
         <a mat-list-item [routerLink]="link.link" routerLinkActive="active" >
           <span matListItemTitle>{{ link?.title }}</span>
-          <mat-icon matListItemIcon>{{link.icon}}</mat-icon>
+          <mat-icon matListItemIcon class="material-icons-outlined primary-color">{{ link?.icon }}</mat-icon>
         </a>
       }
     </mat-nav-list>

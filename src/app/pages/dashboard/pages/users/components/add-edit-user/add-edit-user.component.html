@@ -1,6 +1,6 @@
 <div mat-dialog-title>
   <div class="d-flex justify-content-between align-items-center">
-    <span>{{ 'crear usuario' | translate | capitalize }}</span>
+    <span>{{ (isEditing() ? 'editar usuario' : 'crear usuario') | translate | capitalize }}</span>
 
     <button mat-dialog-close mat-icon-button>
       <mat-icon class="material-icons-outlined">close</mat-icon>
