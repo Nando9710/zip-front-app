@@ -25,7 +25,7 @@
 
       <mat-form-field appearance="outline" class="w-100 mb-1rem" floatLabel="always" subscriptSizing="dynamic">
         <mat-label>{{ 'contraseña' | translate | capitalize }}</mat-label>
-        <input formControlName="password" matInput [type]="hide() ? 'text' : 'password'"/>
+        <input (keyup.enter)="login()" formControlName="password" matInput [type]="hide() ? 'text' : 'password'"/>
         <button mat-icon-button matSuffix (click)="hide.set(!hide())">
           <mat-icon class="material-icons-outlined">{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
