@@ -115,6 +115,10 @@
     height: 100%;
   }
 
+  .d-none {
+    display: none;
+  }
+
   .position-relative {
     position: relative;
   }
@@ -132,11 +136,15 @@
   }
 
   .primary-color {
-    color: mat.get-theme-color($theme, primary, 50);
+    color: mat.get-theme-color($theme, primary, 50) !important;
   }
 
   .secondary-color {
-    color: mat.get-theme-color($theme, primary, 50);
+    color: mat.get-theme-color($theme, primary, 50) !important;
+  }
+
+  .error-color {
+    color: mat.get-theme-color($theme, error, 50) !important;
   }
 
   :root {

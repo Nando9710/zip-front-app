@@ -13,8 +13,18 @@
           width: 100px;
         }
 
-        tr:hover {
-          background-color: mat.get-theme-color($theme, primary, 98);
+        tr {
+
+          th,
+          td {
+            width: 30%;
+          }
+        }
+
+        tbody {
+          tr:hover {
+            background-color: mat.get-theme-color($theme, primary, 98);
+          }
         }
 
       }

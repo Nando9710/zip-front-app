@@ -1,1 +1,59 @@
-<p>files works!</p>
+<section class="d-flex justify-content-center align-items-center p-1rem">
+
+  <div class="table">
+    <div class="d-flex justify-content-end align-items-center gap-1rem">
+      <button mat-fab extended (click)="uploadFile()">
+        <mat-icon class="material-icons-outlined">upload</mat-icon>
+        <span>{{ 'añadir archivo' | translate | capitalize }}</span>
+      </button>
+
+      <button mat-fab extended (click)="getFiles()">
+        <mat-icon class="material-icons-outlined">refresh</mat-icon>
+        <span>{{ 'actualizar' | translate | capitalize }}</span>
+      </button>
+    </div>
+
+    <table mat-table [dataSource]="dataSource()" class="mat-elevation-z2 mt-1rem">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> {{'nombre' | translate | capitalize}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> {{'descripción' | translate | capitalize}} </th>
+        <td mat-cell *matCellDef="let element"> {{element?.description}} </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <div class="actions d-flex align-items-center">
+            @if (element.actions) {
+              <button mat-icon-button (click)="downloadFile(element)" [matTooltip]="'descargar' | translate | uppercase">
+                <mat-icon class="material-icons-outlined">download</mat-icon>
+              </button>
+              <button mat-icon-button (click)="editFile(element)" [matTooltip]="'editar' | translate | uppercase">
+                <mat-icon class="material-icons-outlined primary-color">edit</mat-icon>
+              </button>
+              <button mat-icon-button (click)="deleteFile(element)" [matTooltip]="'borrar' | translate | uppercase">
+                <mat-icon class="material-icons-outlined error-color">delete</mat-icon>
+              </button>
+            }
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row
+          *matRowDef="let row; columns: displayedColumns;"
+          (mouseover)="row.actions = 1"
+          (mouseleave)="row.actions = 0"
+          class="row cursor-pointer"></tr>
+    </table>
+  </div>
+</section>
+

@@ -1,0 +1,60 @@
+<div mat-dialog-title>
+  <div class="d-flex justify-content-between align-items-center">
+    <span>{{ (isEditing() ? 'editar archivo' : 'añadir archivo') | translate | capitalize }}</span>
+
+    <button mat-dialog-close mat-icon-button>
+      <mat-icon class="material-icons-outlined">close</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="d-flex flex-column mt-1rem">
+      @if (!isEditing()) {
+        <div class="d-flex align-items-center gap-1rem">
+          <button for="avatar" mat-stroked-button (click)="selectFile($event)">
+            {{ 'seleccionar archivo' | translate | capitalize }}
+          </button>
+          <input #file type="file" class='d-none' (change)="handleFileChange($event)"/>
+          @if (selectedFile()) {
+            <p class="d-flex align-items-center gap-8px">
+              <span class="file-name">{{ selectedFile()?.name }}</span>
+              <span> - </span>
+              <span> {{ selectedFile()?.size | fileSize }} </span>
+            </p>
+          }
+        </div>
+
+        @if(form.controls.file.hasError('maxFileSize')) {
+          <mat-error>
+            {{ 'el archivo debe ser menor a 5MB' | translate | uppercase }}
+          </mat-error>
+        }
+      }
+
+      <mat-form-field appearance="outline" class="w-100 mt-1rem mb-1rem" floatLabel="always" subscriptSizing="dynamic">
+        <mat-label>{{ 'descripción' | translate | capitalize }}</mat-label>
+        <input autocomplete="off" formControlName="description" matInput type="text"/>
+        @if (form.controls.description.hasError('pattern')) {
+          <mat-error>
+            {{ 'descripción no válida' | translate | uppercase }}
+          </mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+
+<div class="d-flex justify-content-end" mat-dialog-actions>
+  <button matDialogClose mat-flat-button>
+    {{ 'cancelar' | translate | uppercase }}
+  </button>
+
+  <button [disabled]="form.invalid"
+          mat-stroked-button
+          (click)="isEditing() ? editFile() : uploadFile()">
+    {{ (isEditing() ? 'editar': 'añadir') | translate | uppercase }}
+  </button>
+</div>
