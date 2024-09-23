@@ -1,7 +1,10 @@
 export interface Environment {
-  production: boolean,
+  production: boolean;
 
-  cryptoSecretKey: string,
+  cryptoSecretKey: string;
 
-  apiUrl: string
+  apiUrl: string;
+
+  supabaseUrl: string;
+  supabaseSecretKey: string;
 }

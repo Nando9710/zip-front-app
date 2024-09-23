@@ -1,4 +1,4 @@
-import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { marker as _t } from '@biesbjerg/ngx-translate-extract-marker';
 import { catchError } from 'rxjs/operators';
@@ -20,12 +20,10 @@ export function TokenInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn)
   const token: string = inject(LoggedInUserService).getTokenOfUser();
 
   const headers: { [key: string]: string } = {
-    'Content-Type': 'application/json',
     'Cache-Control': 'public, max-age=32150000',
     'Referrer-Policy': 'no-referrer-when-downgrade',
     'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
-    'Access-Control-Allow-Origin': '*',
-    fromWeb: "true"
+    'Access-Control-Allow-Origin': '*'
   };
 
   if (token) headers.Authorization = "Bearer " + token;
