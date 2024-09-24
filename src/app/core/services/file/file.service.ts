@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { FILES_URL, FILES_URL_ID, UPLOAD_FILE_URL } from '@constants/endpoints';
 import { EditFile, FileDownloaded, Files } from '@interfaces/file';
 import { from, Observable } from 'rxjs';
-import { SUPABASE_CONFIG } from 'supabase.config';
+import { SUPABASE_CONFIG } from '../../../../../supabase.config';
 
 @Injectable({
   providedIn: 'root'
