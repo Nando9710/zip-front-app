@@ -1,29 +1,54 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+
 import { AppComponent } from './app.component';
+import { LoadingService } from "./core/services/loading/loading.service";
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let loadingService: LoadingService;
+
+  beforeEach(async (): Promise<void> => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [
+        AppComponent,
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        TranslateModule,
+        RouterTestingModule,
+        ToastrModule.forRoot(),
+        TranslateModule.forRoot(),
+      ],
+      providers: [
+        TranslateService
+      ]
     }).compileComponents();
+
+    loadingService = TestBed.inject(LoadingService);
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach((): void => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+  })
+
+  it('should create the app', (): void => {
+    expect(component).toBeTruthy();
   });
 
-  it(`should have the 'zip-front-app' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('zip-front-app');
-  });
+  it('should get loading status', (): void => {
+    const loadingService: LoadingService = TestBed.inject(LoadingService);
+    component.ngOnInit();
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, zip-front-app');
+    loadingService.show();
+    expect(component.loading()).toBeTruthy();
+
+    loadingService.hide();
+    expect(component.loading()).toBeFalsy();
   });
 });

@@ -3,7 +3,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { ShowToastrService } from '@services/general/show-toastr/show-toastr.service';
+import { ShowToastrService } from '@services/show-toastr/show-toastr.service';
 import { UtilsService } from './utils.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -11,7 +11,6 @@ describe('UtilsService', () => {
   let service: UtilsService;
   let showToastr: ShowToastrService;
 
-  const mockUtils = require('./mocks/utils.json');
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -33,7 +32,12 @@ describe('UtilsService', () => {
 
   it('Configuración global de los Toastr', () => {
     const config = service.getDefaultToastrConfig();
-    expect(config).toEqual(mockUtils?.GET_TOASTR_CONFIG);
+    expect(config).toEqual({
+      "timeOut": 8000,
+      "progressBar": false,
+      "positionClass": "toast-top-right",
+      "closeButton": false
+    });
   });
 
   it('Manejo de errores', function () {
