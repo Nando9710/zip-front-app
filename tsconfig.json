@@ -24,13 +24,14 @@
     "allowJs": true,
     "module": "ESNext",
     "target": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "lib": [
       "ESNext",
       "DOM"
     ],
     "types": [
       "node",
+      "jest"
     ],
     "typeRoots": [
       "node_modules/@types"
