@@ -65,6 +65,7 @@ export class FilesComponent {
         },
         error: (error) => {
           this._loadingService.hide();
+          this.dataSource.set(null);
           console.error(error);
         }
       });
@@ -82,8 +83,8 @@ export class FilesComponent {
     dialogRef.afterClosed()
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({
-        next: (user: User) => {
-          if (user) {
+        next: (file: Files) => {
+          if (file) {
             this.getFiles();
           }
         }
@@ -152,11 +153,7 @@ export class FilesComponent {
             this._renderer.setAttribute(link, 'href', url as string);
             this._renderer.setAttribute(link, 'download', element.path);
             link.click();
-
-            this._loadingService.hide();
           } else {
-            this._loadingService.hide();
-
             this._showToastrService.showToast(
               _t('Error al descargar el archivo'),
               ToastrTypes.ERROR,
@@ -165,6 +162,8 @@ export class FilesComponent {
               this._utilsService.getDefaultToastrConfig()
             );
           }
+
+          this._loadingService.hide();
         }
       });
   }

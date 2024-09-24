@@ -18,6 +18,7 @@ export class UserService {
   }
 
   public createUser(data: CreateUser): Observable<User> {
+    console.log(data);
     return this.http.post<User>(USERS_URL, data);
   }
 

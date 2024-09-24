@@ -83,7 +83,7 @@ export class AddEditFileComponent {
     this._loadingService.show();
 
     const { description } = this.form.value;
-    const userId = this._loggedInUserService.getLoggedInUser().id;
+    const userId = this._loggedInUserService.getLoggedInUser()?.id;
 
     const formData: FormData = new FormData();
     formData.append('file', this.selectedFile());

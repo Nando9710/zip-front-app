@@ -50,7 +50,7 @@ export class UsersComponent {
   public readonly displayedColumns: string[] = ['name', 'email', 'actions'];
   public readonly dataSource: WritableSignal<{ name: string; email: string; }[]> = signal([]);
 
-  private getUsers(): void {
+  public getUsers(): void {
     this._loadingService.show();
 
     this._userService.getUsers()
@@ -62,6 +62,7 @@ export class UsersComponent {
         },
         error: (error) => {
           this._loadingService.hide();
+          this.dataSource.set(null);
           console.error(error);
         }
       });
@@ -87,7 +88,7 @@ export class UsersComponent {
       });
   }
 
-  public editUser(element): void {
+  public editUser(element: User): void {
     const dialogRef: MatDialogRef<AddEditUserComponent> = this._dialog.open(
       AddEditUserComponent, {
         ...BASIC_MATDIALOG_CONFIG,

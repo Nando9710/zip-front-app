@@ -3,14 +3,19 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { ShowToastrService } from '@services/show-toastr/show-toastr.service';
+import { ShowToastrService, ToastrTypes } from '@services/show-toastr/show-toastr.service';
 import { UtilsService } from './utils.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LoadingService } from '@services/loading/loading.service';
+import { LoggedInUserService } from '@services/logged-in-user/logged-in-user.service';
+import { Router } from '@angular/router';
 
 describe('UtilsService', () => {
   let service: UtilsService;
   let showToastr: ShowToastrService;
-
+  let loadingService: LoadingService;
+  let loggedInUserService: LoggedInUserService;
+  let router: Router;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -19,11 +24,24 @@ describe('UtilsService', () => {
         TranslateModule.forRoot(),
         HttpClientTestingModule
       ],
-      providers: [ToastrService]
+      providers: [
+        UtilsService,
+        ToastrService,
+        LoadingService,
+        LoggedInUserService,
+        Router
+      ]
     });
 
     service = TestBed.inject(UtilsService);
     showToastr = TestBed.inject(ShowToastrService);
+    loadingService = TestBed.inject(LoadingService);
+    loggedInUserService = TestBed.inject(LoggedInUserService);
+    router = TestBed.inject(Router);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   it('should be created', inject([UtilsService], (service: UtilsService) => {
@@ -40,15 +58,74 @@ describe('UtilsService', () => {
     });
   });
 
-  it('Manejo de errores', function () {
-    const spyToastr = jest.spyOn(showToastr, 'showToast');
-    const error = new HttpErrorResponse({
-      error: {
-        status: 0
-      }
+  describe('errorHandle', () => {
+    it('should handle 401 and 403 errors', () => {
+      const mockResponse = new HttpErrorResponse({ status: 401 });
+      const spyRemoveUserCookies = jest.spyOn(loggedInUserService, 'removeUserCookies');
+      const spyShowToast = jest.spyOn(showToastr, 'showToast');
+      const spyRouterNavigate = jest.spyOn(router, 'navigate');
+
+      service.errorHandle(mockResponse);
+
+      expect(spyRemoveUserCookies).toHaveBeenCalled();
+      expect(spyShowToast).toHaveBeenCalledWith(
+        'Usuario no autorizado', ToastrTypes.INFO, false, 'Error', service.getDefaultToastrConfig()
+      );
+      expect(spyRouterNavigate).toHaveBeenCalledWith(['authentication']);
     });
 
-    service.errorHandle(error);
-    expect(spyToastr).toBeCalledTimes(1);
+    it('should handle 400 errors and show messages', () => {
+      const spyShowToast = jest.spyOn(showToastr, 'showToast');
+
+      const mockResponse = new HttpErrorResponse({
+        status: 400,
+        error: { message: 'Error específico del servidor' }
+      });
+
+      service.errorHandle(mockResponse);
+
+      expect(spyShowToast).toHaveBeenCalledWith(
+        'Error específico del servidor', ToastrTypes.INFO, false, 'Error', service.getDefaultToastrConfig()
+      );
+    });
+
+    it('should handle 500 errors', () => {
+      const spyShowToast = jest.spyOn(showToastr, 'showToast');
+      const mockResponse = new HttpErrorResponse({ status: 500 });
+
+      service.errorHandle(mockResponse);
+
+      expect(spyShowToast).toHaveBeenCalledWith(
+        'Error interno, por favor póngase en contacto con el administrador.',
+        ToastrTypes.INFO,
+        false,
+        'Error',
+        service.getDefaultToastrConfig()
+      );
+    });
+
+    it('should handle network issues (status 0)', () => {
+      const spyShowToast = jest.spyOn(showToastr, 'showToast');
+      const mockResponse = new HttpErrorResponse({ status: 0 });
+
+      service.errorHandle(mockResponse);
+
+      expect(spyShowToast).toHaveBeenCalledWith(
+        'El servidor esta caído o necesita revisar su conexión',
+        ToastrTypes.INFO,
+        false,
+        'Error',
+        service.getDefaultToastrConfig()
+      );
+    });
+
+    it('should hide loading service after handling error', () => {
+      const spyHide = jest.spyOn(loadingService, 'hide');
+      const mockResponse = new HttpErrorResponse({ status: 500 });
+
+      service.errorHandle(mockResponse);
+
+      expect(spyHide).toHaveBeenCalled();
+    });
   });
 });

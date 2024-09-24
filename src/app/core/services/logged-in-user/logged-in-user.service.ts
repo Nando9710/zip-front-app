@@ -21,9 +21,9 @@ export class LoggedInUserService {
     let token: string;
 
     if (isPlatformBrowser(this._platformId)) {
-      if (TOKEN_STORAGE_KEY in localStorage) {
-        token = localStorage.getItem(TOKEN_STORAGE_KEY);
-      } else if (TOKEN_STORAGE_KEY in Cookies) {
+      token = localStorage.getItem(TOKEN_STORAGE_KEY);
+
+      if (!token) {
         token = Cookies.get(TOKEN_STORAGE_KEY);
       }
     }
@@ -47,9 +47,9 @@ export class LoggedInUserService {
     let user: string;
 
     if (isPlatformBrowser(this._platformId)) {
-      if (USER_STORAGE_KEY in localStorage) {
-        user = localStorage.getItem(USER_STORAGE_KEY);
-      } else if (USER_STORAGE_KEY in Cookies) {
+      user = localStorage.getItem(USER_STORAGE_KEY);
+
+      if (!user) {
         user = Cookies.get(USER_STORAGE_KEY);
       }
     }
